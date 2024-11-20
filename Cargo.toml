@@ -1,0 +1,50 @@
+[workspace]
+members = ["packages/*", "contracts/*", "wasi/*"]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+version = "0.2.1"
+license = "MIT"
+repository = "https://github.com/Lay3rLabs/ai-bouncer"
+rust-version = "1.80.0"
+
+[workspace.dependencies]
+
+# packages
+ai-bouncer-types = { path = "packages/ai-bouncer-types" }
+
+# contract
+cosmwasm-schema = "2.1.4"
+cosmwasm-std = "2.1.4"
+cw-storage-plus = "2.0.0"
+cw-controllers = "2.0.0"
+cw2 = "2.0.0"
+cw4 = "2.0.0"
+cw4-group = "2.0.0"
+schemars = "0.8.17"
+thiserror = "1.0.59"
+cw-orch = "0.27.0"
+cw-multi-test = "0.20"
+lavs-orch = { git = "https://github.com/Lay3rLabs/avs-toolkit.git", tag = "v0.2.1" }
+lavs-apis = { git = "https://github.com/Lay3rLabs/avs-toolkit.git", tag = "v0.2.1" }
+
+# wasi
+layer-wasi = { git = "https://github.com/Lay3rLabs/avs-toolkit.git", tag = "v0.2.1" }
+serde = { version = "1.0.210", default-features = false, features = ["derive"] }
+serde_json = { version = "1.0.128" }
+anyhow = "1"
+wit-bindgen-rt = { version = "0.32.0", features = ["bitflags"] }
+base64 = "0.22.1"
+
+
+[profile.release]
+codegen-units = 1
+incremental = false
+debug = false
+debug-assertions = false
+lto = true
+panic = 'abort'
+rpath = false
+opt-level = 3
+overflow-checks = true
